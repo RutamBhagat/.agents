@@ -127,6 +127,24 @@
       "pluginName": "example-skills",
       "installedAt": "2026-06-30T05:50:34.478Z",
       "updatedAt": "2026-06-30T05:50:34.478Z"
+    },
+    "avoid-ai-writing": {
+      "source": "conorbronsdon/avoid-ai-writing",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/conorbronsdon/avoid-ai-writing.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "27156c7ae69fade80f2a3410e6899b780248709d",
+      "installedAt": "2026-07-23T07:21:03.643Z",
+      "updatedAt": "2026-07-23T07:21:03.643Z"
+    },
+    "i-have-adhd": {
+      "source": "ayghri/i-have-adhd",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ayghri/i-have-adhd.git",
+      "skillPath": "skills/i-have-adhd/SKILL.md",
+      "skillFolderHash": "5f9aed51e473d34f38962ac270ada0b1e3ff2a4a",
+      "installedAt": "2026-07-24T04:47:53.579Z",
+      "updatedAt": "2026-07-24T04:47:53.579Z"
     }
   },
   "dismissed": {
