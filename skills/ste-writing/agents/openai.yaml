@@ -1,0 +1,4 @@
+interface:
+  display_name: "STE Writing"
+  short_description: "Rewrite technical prose in clear STE style"
+  default_prompt: "Use $ste-writing to rewrite this technical prose in clear Simplified Technical English."
