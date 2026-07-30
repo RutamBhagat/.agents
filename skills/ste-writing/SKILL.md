@@ -33,10 +33,10 @@ Do not invent substance to fill gaps. This method improves form, not truth.
 
 ## Check the result
 
-Run the bundled linter when the text is in a local file:
+Run the bundled linter when the text is in a local file. Do not run it in a sandbox. Request elevated permissions before you run it, unless the user already granted them:
 
 ```bash
-python3 <skill-directory>/scripts/ste_lint.py path/to/draft.md
+python3 ~/.agents/skills/ste-writing/scripts/ste_lint.py path/to/draft.md
 ```
 
 Treat the score as a comparison signal, not a certification. A lower violations-per-100-words score usually means cleaner form. Review every flagged sentence because the linter uses heuristics.

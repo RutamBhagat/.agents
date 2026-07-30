@@ -18,43 +18,6 @@ Solve the user’s request with the simplest correct implementation. Prefer smal
 - Modularize large files into smaller, focused modules.
 - Prefer named exports over default exports.
 
-## Python
-
-- Write modern Python that supports the project’s Python version.
-- Prefer simple functions, dataclasses, `TypedDict`, and plain classes.
-- Use Pydantic only when runtime validation is required.
-- Add type annotations to public functions, class attributes, and non-obvious local variables.
-- Prefer precise types over `Any`. Use `object` for unknown values and narrow it before use.
-- Use built-in generics, modern unions, and abstract collections from `collections.abc`.
-- Use `isinstance`, `match`, `Literal`, and discriminated unions for type narrowing.
-- Use `TypeIs` for reusable narrowing functions when control flow is not sufficient.
-- Avoid `cast` unless code has established the invariant. Add a brief comment that explains the invariant.
-
-### Python Tooling
-
-Use the project’s existing ty, Ruff, and Pydantic configuration. Do not replace or add tools unless the task requires it.
-
-- Use ty for static type checking, inference, and type narrowing.
-- Use Ruff for linting, import cleanup, and formatting.
-- Use Pydantic to validate untrusted API, configuration, environment, file, queue, and third-party data.
-- Pass validated models or typed values into the application instead of raw dictionaries.
-- Use Pydantic discriminated unions with a `Literal` tag for input with multiple shapes.
-- Branch on the tag so ty can narrow the validated union.
-- Use strict validation when implicit conversion could hide invalid input.
-- Do not use `model_construct()` for untrusted or unvalidated data.
-
-### Python Validation
-
-When the user requests Python validation, run only the smallest relevant check.
-
-- Type checking: `ty check <changed-path>`
-- Linting: `ruff check <changed-path>`
-- Safe lint fixes: `ruff check --fix <changed-path>`
-- Format check: `ruff format --check <changed-path>`
-- Formatting: `ruff format <changed-path>`
-- Use `uv run` for these commands when the project manages tools with uv.
-- Do not run whole-project checks unless the user requests them or the change affects the whole project.
-
 ## Before Coding
 
 Do not code blindly. First narrow the problem with the `is` skill or direct inspection.
