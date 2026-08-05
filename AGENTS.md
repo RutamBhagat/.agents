@@ -1,94 +1,108 @@
-# AGENTS.md
-
 ## Goal
 
-Solve the user’s request with the simplest correct implementation. Prefer small, readable, happy-path code that a junior developer can understand quickly.
+Implement the simplest correct solution
+Keep happy-path code small readable and clear to junior developers
 
-## Coding Style
+## General
 
-- Keep code barebones, clear, and low-line-count.
-- Prefer readability over defensive robustness.
-- Avoid unnecessary abstractions, helpers, config, or edge-case handling.
-- Use named functions for top-level functions.
-- Use arrow functions only for callbacks.
-- When a function needs more than one argument, pass a single object.
-- Make sure a directory exists before creating a file.
-- Edit or write one file at a time.
-- Use CLI generators when they reduce custom code, such as shadcn.
-- Modularize large files into smaller, focused modules.
-- Prefer named exports over default exports.
+- Only report to me in ASD-STE100 Simplified Technical English
+- Do not add test files in Python repositories
+- Do not add docstrings, jsdocs or comments
+- Use only edit or write tools for code changes
+- Change one file at a time
+- Create its directory first
+- Do not use Chrome the Node REPL or browser tools unless the user asks
+- Keep code clear minimal and short
+- Prefer readability to defensive robustness
+- Avoid needless abstractions helpers configuration and edge-case handling
+- Use named top-level functions
+- Reserve arrow functions for callbacks
+- Pass one object to functions that need multiple arguments
+- Use CLI generators such as shadcn when they reduce custom code
+- Split large files into small focused modules
+- Prefer named exports to default exports
+
+## Implementation Method
+
+- Break large work into small dependency-ordered steps
+- Trace data flow and identify prerequisites before coding
+- Build the smallest working end-to-end path first
+- Verify each intermediate step before extending it
+- Do not require test-first development
 
 ## Python
 
-- Write modern Python that supports the project’s Python version.
-- Prefer simple functions, dataclasses, `TypedDict`, and plain classes.
-- Use Pydantic only when runtime validation is required.
-- Add type annotations to public functions, class attributes, and non-obvious local variables.
-- Prefer precise types over `Any`. Use `object` for unknown values and narrow it before use.
-- Use built-in generics, modern unions, and abstract collections from `collections.abc`.
-- Use `isinstance`, `match`, `Literal`, and discriminated unions for type narrowing.
-- Use `TypeIs` for reusable narrowing functions when control flow is not sufficient.
-- Avoid `cast` unless code has established the invariant. Add a brief comment that explains the invariant.
+- Use modern Python supported by the project
+- Prefer functions dataclasses `TypedDict` and plain classes
+- Use Pydantic only for runtime validation
+- Annotate public functions class attributes and non-obvious local variables
+- Prefer precise types to `Any`
+- Use `object` for unknown values then narrow it
+- Use built-in generics modern unions and `collections.abc` types
+- Narrow with `isinstance` `match` `Literal` and discriminated unions
+- Use `TypeIs` for reusable narrowing when control flow is insufficient
+- Use `cast` only after code proves the invariant
+- State the invariant in a short comment
 
-### Python Tooling
+### Tools and Checks
 
-Use the project’s existing ty, Ruff, and Pydantic configuration. Do not replace or add tools unless the task requires it.
+Keep the project’s ty Ruff and Pydantic configuration
+Add or replace tools only when required
 
-- Use ty for static type checking, inference, and type narrowing.
-- Use Ruff for linting, import cleanup, and formatting.
-- Use Pydantic to validate untrusted API, configuration, environment, file, queue, and third-party data.
-- Pass validated models or typed values into the application instead of raw dictionaries.
-- Use Pydantic discriminated unions with a `Literal` tag for input with multiple shapes.
-- Branch on the tag so ty can narrow the validated union.
-- Use strict validation when implicit conversion could hide invalid input.
-- Do not use `model_construct()` for untrusted or unvalidated data.
+- Use ty for type checking inference and narrowing
+- Use Ruff for linting import cleanup and formatting
+- Use Pydantic to validate untrusted API configuration environment file queue and third-party data
+- Pass validated models or typed values instead of raw dictionaries
+- Use a Pydantic discriminated union with a `Literal` tag for multiple input shapes
+- Branch on the tag so ty narrows the union
+- Use strict validation when conversion can hide invalid input
+- Never use `model_construct()` for untrusted or unvalidated data
 
-### Python Validation
+When the user requests Python validation run only the smallest relevant check
 
-When the user requests Python validation, run only the smallest relevant check.
+- Types `ty check <changed-path>`
+- Lint `ruff check <changed-path>`
+- Safe fixes `ruff check --fix <changed-path>`
+- Format check `ruff format --check <changed-path>`
+- Format `ruff format <changed-path>`
 
-- Type checking: `ty check <changed-path>`
-- Linting: `ruff check <changed-path>`
-- Safe lint fixes: `ruff check --fix <changed-path>`
-- Format check: `ruff format --check <changed-path>`
-- Formatting: `ruff format <changed-path>`
-- Use `uv run` for these commands when the project manages tools with uv.
-- Do not run whole-project checks unless the user requests them or the change affects the whole project.
+Use `uv run` in uv projects
+Run whole-project checks only when requested or when the change affects the whole project
 
 ## Before Coding
 
-Do not code blindly. First narrow the problem with the `is` skill or direct inspection.
-
-For libraries, packages, and frameworks:
-
-- Search the web to confirm the current best approach.
-- NOTE: ONLY IF you are in claude code use the parallel web search mcp instead of the default web search tool
-- Prefer trusted npm or pip packages over fragile custom code.
-- Use Context7 for current documentation before implementing with any npm, pip, framework, or library API.
-
-For frontend work:
-
-- Search for the right component approach first.
-- Use shadcn CLI to install needed components.
-- Keep UI implementation simple and conventional.
+- Narrow the problem through direct inspection or the `is` skill
+- Search the web for the current best approach before work with libraries packages or frameworks
+- In Claude Code only use the parallel web search MCP instead of default web search
+- Prefer trusted npm or pip packages to fragile custom code
+- Find the correct component approach before frontend work
+- Install required components with the shadcn CLI
+- Keep UI code simple and conventional
 
 ## Validation
 
-Use the smallest useful check for the change.
+- Use the smallest useful check
+- Use throwaway Bun or Python tests when useful
+- Add unit or integration tests when Vitest already exists
+- Do not run lint format type-check dev or build commands unless the user asks
 
-- Create one-time throwaway tests with bun or Python when useful.
-- Add unit or integration tests when Vitest is already available.
-- Do not run lint, format, typecheck, dev, or build commands unless explicitly asked.
+## Context7
 
-<!-- context7 -->
-Use Context7 MCP to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service — even well-known ones like React, Next.js, Prisma, Express, Tailwind and Fastapi. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer — your training data may not reflect recent changes. Prefer this over web search for library docs.
+Use Context7 MCP for current documentation before implementing npm pip framework or library APIs
+Also use it for questions about a library framework SDK API CLI or cloud service
+This includes syntax configuration migration library-specific debugging setup and CLI use
+Use it for familiar tools too
+Prefer it to web search for library documentation
 
-Do not use for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
+Do not use Context7 for refactoring scripts from scratch business-logic debugging code review or general programming concepts
 
-## Steps
-
-1. Always start with `resolve-library-id` using the library name and the user's question, unless the user provides an exact library ID in `/org/project` format
-2. Pick the best match (ID format: `/org/project`) by: exact name match, description relevance, code snippet count, source reputation (High/Medium preferred), and benchmark score (higher is better). If results don't look right, try alternate names or queries (e.g., "next.js" not "nextjs", or rephrase the question). Use version-specific IDs when the user mentions a version
-3. `query-docs` with the selected library ID and the user's full question (not single words), scoped to a single concept. If the question spans multiple distinct concepts (e.g. routing and auth and caching), make a separate `query-docs` call per concept with the same library ID, unless the question is about how the concepts interact — combined queries dilute ranking and return shallow results for each topic
-4. Answer using the fetched docs
-<!-- context7 -->
+- Call `resolve-library-id` with the library name and full question
+   Skip this step for an exact `/org/project` ID
+- Choose the best exact match by description snippet count source reputation and benchmark score
+   Prefer High or Medium reputation
+   Use a version ID when given
+   Try another name or query if needed
+- Call `query-docs` with the selected ID and full question
+   Limit each call to one concept
+   Split distinct concepts into separate calls with the same ID unless their interaction is the question
+- Answer from the fetched documentation

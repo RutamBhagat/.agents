@@ -155,6 +155,15 @@
       "pluginName": "example-skills",
       "installedAt": "2026-07-27T04:29:57.608Z",
       "updatedAt": "2026-07-27T04:29:57.608Z"
+    },
+    "zero-tech-debt": {
+      "source": "jnsahaj/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/jnsahaj/skills.git",
+      "skillPath": "skills/zero-tech-debt/SKILL.md",
+      "skillFolderHash": "346d365a9b99646df6cf22e25e4bc8726d9fd4f0",
+      "installedAt": "2026-08-04T03:40:41.316Z",
+      "updatedAt": "2026-08-04T03:40:41.316Z"
     }
   },
   "dismissed": {
