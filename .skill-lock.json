@@ -173,6 +173,15 @@
       "skillFolderHash": "d2b32fe8f77680a6fce63d1ae2b068bfc1875626",
       "installedAt": "2026-08-06T03:07:34.291Z",
       "updatedAt": "2026-08-06T03:07:34.291Z"
+    },
+    "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/shadcn/ui.git",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "skillFolderHash": "0a31c3c2535a62b22bf23a1b10a142178a6b7dbf",
+      "installedAt": "2026-08-08T10:10:05.366Z",
+      "updatedAt": "2026-08-08T10:10:05.366Z"
     }
   },
   "dismissed": {
