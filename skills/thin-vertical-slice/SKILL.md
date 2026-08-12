@@ -1,36 +1,158 @@
 ---
 name: thin-vertical-slice
-description: Build software in the thinnest useful end-to-end increments. Use this skill whenever the user asks to implement, plan, decompose, rescue, or review a feature, MVP, prototype, refactor, migration, API, workflow, or AI-assisted coding task where scope can be reduced to a small observable result. Prefer this even when the user does not say “vertical slice” if the work risks being split by frontend/backend/infra layers, has a long feedback loop, or is too large to review confidently.
+description: Use this skill when the user asks to plan, implement, decompose, rescue, or review software work that can be reduced to small end-to-end slices with observable results.
 ---
-Goal
-Deliver the smallest observable behavior that crosses the necessary system boundaries and can be tested, reviewed, or shown before expanding scope.
 
-Operating rule
-Slice by outcome, not by layer. A slice should produce evidence that the system does something useful or meaningfully validates a risky assumption. Avoid separate frontend, backend, database, infrastructure, or cleanup phases when a thinner end-to-end path can prove the behavior sooner.
+# Thin Vertical Slice
 
-Start
-Restate the requested outcome in one sentence. Identify the user, caller, or external observer. Define the smallest success signal they could observe. Note the main uncertainty or integration risk that should be exercised early.
+Build the smallest observable behavior that crosses the boundaries needed for the requested outcome.
 
-Choose the slice
-Select one path through the system that reaches the success signal. Remove optional branches, secondary roles, edge cases, polish, generalized abstractions, scale work, broad refactors, and speculative extensibility. Use hard-coded values, fixtures, fake data, stubs, feature flags, or manual steps when they preserve the feedback loop and do not hide the risk being tested.
+## Goal
 
-Keep it real where risk lives
-Do not fake the boundary that contains the main uncertainty. If the risky part is database persistence, use the real persistence path. If it is an external API, exercise the real integration when safe and practical. If it is UI behavior, make the UI actually drive the path. Stub lower-risk surroundings instead.
+Deliver useful evidence early. Each slice must produce behavior that a user, caller, reviewer, or external system can observe.
 
-Plan
-Express the work as a short sequence of independently verifiable slices. Each slice should add one observable capability and leave the system in a coherent state. Prefer the smallest slice that could change a reviewer’s understanding of the product or technical risk.
+Slice by outcome, not by layer. Do not split the plan into frontend, backend, database, infrastructure, testing, or cleanup phases.
 
-Implementation
-Implement the first slice completely before expanding. Add only the minimum code, schema, wiring, tests, and interface needed for that path. Reuse existing patterns. Avoid creating frameworks or abstractions for hypothetical future slices unless duplication is already causing friction.
+## Start
 
-Verification
-Prove the slice from the observer’s point of view. Use the narrowest reliable test that crosses the important boundaries. Record the exact command, request, UI action, or fixture needed to reproduce the result. If the slice cannot be demonstrated or tested independently, make it thinner or redefine the boundary.
+1. State the requested outcome in one sentence.
+2. Name the user, caller, reviewer, or external observer.
+3. Define the smallest success signal that observer can see.
+4. Identify the main uncertainty or integration risk.
+5. Make the first slice exercise that risk when practical.
 
-Review checkpoint
-After each slice, summarize what now works, what was deliberately deferred, what was learned, and what the next thinnest slice is. Stop when the user’s requested outcome is met. Do not continue into cleanup, hardening, optimization, or generalization unless requested or required for correctness or safety.
+## Choose slices
 
-Failure modes
-Reject horizontal progress that produces no testable behavior, such as building all infrastructure first, finishing all backend endpoints before any caller can use them, or creating abstractions before one concrete path works. Reject slices that are technically small but still require many later pieces before feedback is possible. Reject fake end-to-end demos that stub the exact uncertainty the work is meant to validate.
+Create an ordered set of thin vertical slices.
 
-Output style
-Be terse. For planning, return the target outcome, the first slice, deferred scope, verification, and next slice. For implementation, make the changes and report only the observable result, verification evidence, deliberate deferrals, and next slice if useful. Do not produce a large roadmap unless requested.
+Each slice must:
+
+- add one observable capability
+- cross only the boundaries needed for that capability
+- leave the system in a coherent state
+- have its own completion criteria
+- be reviewable without later slices
+
+Make Slice 1 prove the core workflow with the least scope.
+
+Remove optional branches, secondary roles, edge cases, polish, broad refactors, scale work, and speculative abstractions.
+
+Use hard-coded values, fixtures, fake data, stubs, feature flags, or manual steps when they keep feedback fast.
+
+Do not fake the boundary that contains the main risk.
+
+If persistence is the risk, use the real persistence path. If an external API is the risk, use the real integration when safe. If UI behavior is the risk, make the UI drive the path.
+
+Stub lower-risk surroundings instead.
+
+## Acceptance criteria
+
+Give each slice a short outcome title and a nested checklist of completion criteria.
+
+Prefer criteria that describe observable behavior:
+
+- User can ...
+- System shows ...
+- Server rejects ...
+- Data remains ...
+- Report matches ...
+- Deployment exercises ...
+
+Use implementation details only when they define correctness or a required constraint.
+
+Use nested checklist items for a selected policy, assumption, or behavior rule.
+
+Do not defer a test needed to prove an earlier slice.
+
+A later confidence slice can add broader tests that are not required for earlier acceptance.
+
+## Plan
+
+Show the full ordered slice sequence needed for the requested outcome.
+
+Keep each slice thin. Add later slices only for behavior that the requested outcome still needs.
+
+Put verification under the slice that it proves.
+
+Put deployment in the earliest slice where the live environment matters to the risk.
+
+Add a final deferred section for excluded work.
+
+Move optional features, generalized abstractions, UI polish, broad refactors, and premature scale work to that section.
+
+Do not repeat the same work in a later testing or cleanup slice.
+
+## Implementation
+
+When implementing, complete the first incomplete slice before you expand scope.
+
+Add only the minimum code, schema, wiring, tests, and interface for that slice.
+
+Reuse existing project patterns.
+
+Do not create a framework for hypothetical later slices unless current duplication already causes friction.
+
+After each slice:
+
+- state what now works
+- state what you deliberately deferred
+- state what you learned
+- name the next thinnest slice, if more work remains
+
+Stop when the requested outcome works. Do not continue into cleanup, optimization, or generalization unless correctness or safety requires it.
+
+## Verification
+
+Verify the slice from the viewpoint of the observer.
+
+Use the narrowest reliable test that crosses the important boundaries.
+
+Record the exact command, request, UI action, fixture, or test that reproduces the result.
+
+If a slice cannot stand on its own under verification, make it thinner or change its boundary.
+
+## Output
+
+Be terse. Use plain-text Markdown checklists for plans.
+
+Use this format:
+
+- [ ] Slice 1: <observable outcome>
+  - [ ] <completion criterion>
+  - [ ] <completion criterion>
+  - [ ] <completion criterion>
+
+- [ ] Slice 2: <next observable outcome>
+  - [ ] <completion criterion>
+  - [ ] <completion criterion>
+
+- [ ] Deferred until the required slices work
+  - [ ] <deferred item>
+            - [ ] <reason, constraint, or later policy when useful>
+
+Use one top-level checklist item for each slice.
+
+Use nested checklist items for completion criteria.
+
+Prefer 3 to 8 criteria per slice, but use the count that the behavior needs.
+
+Write slice titles as outcomes or proofs. Do not use subsystem names or implementation phases as slice titles.
+
+Use `[ ]` for work that is not verified.
+
+Use `[x]` only when available evidence shows that the work is complete.
+
+When you reconstruct or summarize a completed plan, use `[x]` for completed items.
+
+Do not add introductory prose, rationale sections, or tables when the checklist can contain the same information.
+
+Do not add a separate verification section when the checklist can contain the verification.
+
+For implementation work, report only:
+
+- the observable result
+- verification evidence
+- deliberate deferrals
+- the next slice, when useful
+
+Do not produce a large roadmap unless the user asks for one.

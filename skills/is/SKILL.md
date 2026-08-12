@@ -1,4 +1,5 @@
 ---
+name: is
 description: Analyze issues (bugs or feature requests)
 argument-hint: "<issue>"
 ---

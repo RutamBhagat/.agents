@@ -1,6 +1,6 @@
 ---
 name: oracle
-description: "Bundle a task with narrow local files and copy Markdown for manual ChatGPT review. Use for repository reviews, debugging, architecture checks, and implementation plans that need project context."
+description: "Use this skill when the user asks for a repository review, debugging help, architecture analysis, or an implementation plan that requires a focused set of local project files and Markdown context for manual ChatGPT review."
 ---
 
 ---

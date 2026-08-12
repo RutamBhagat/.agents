@@ -1,12 +1,9 @@
 ---
 name: issue-writer
 description: >-
-  Write or rewrite concise, evidence-based GitHub issues from rough notes,
-  logs, screenshots, bug reports, or feature requests. Always use this skill
-  when a user wants to draft, clean up, condense, or prepare an issue. Use it
-  for open source and internal projects. Verify observable behavior before
-  writing when tools and access permit. Remove guessed diagnoses, invented
-  reproduction steps, implementation plans, and other LLM-generated padding.
+  Use this skill when the user asks to draft, rewrite, clean up, condense, or
+  prepare a GitHub issue from notes, logs, screenshots, bug reports, or feature
+  requests, for either open source or internal projects.
 ---
 
 # Issue Writer

@@ -1,6 +1,6 @@
 ---
 name: ste-writing
-description: Rewrite technical prose in ASD-STE100-inspired Simplified Technical English to remove AI-writing patterns and improve clarity. Use for documentation, READMEs, pull-request descriptions, release notes, error messages, runbooks, procedures, and code comments when the user asks for plain, concise, controlled, or human-sounding technical writing. Do not apply it to code, identifiers, command syntax, marketing copy, essays, or writing that must preserve a strong personal voice.
+description: Use this skill when the user asks to rewrite technical prose for clearer, plainer, more concise, controlled, or human-sounding language, especially in documentation, READMEs, pull-request descriptions, release notes, error messages, runbooks, procedures, or code comments. Do not use it for code, identifiers, command syntax, marketing copy, essays, or writing that must preserve a strong personal voice.
 ---
 
 # STE Writing
