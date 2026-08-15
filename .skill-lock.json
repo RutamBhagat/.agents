@@ -182,6 +182,15 @@
       "skillFolderHash": "0a31c3c2535a62b22bf23a1b10a142178a6b7dbf",
       "installedAt": "2026-08-08T10:10:05.366Z",
       "updatedAt": "2026-08-08T10:10:05.366Z"
+    },
+    "tailscale": {
+      "source": "tailscale/tailscale-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/tailscale/tailscale-skill.git",
+      "skillPath": "skills/tailscale/SKILL.md",
+      "skillFolderHash": "a869ca83270acf031ebb8ffff4b664d62d5d9b0f",
+      "installedAt": "2026-08-15T17:39:35.488Z",
+      "updatedAt": "2026-08-15T17:39:35.488Z"
     }
   },
   "dismissed": {
